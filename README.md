@@ -1,6 +1,5 @@
 # Cortex - MLOps Backbone
 
-> **Production-ready MLOps infrastructure for the entire QuantSingularity Fintech Suite.**
 > Cortex is the shared AI/ML backbone that every downstream service depends on for feature
 > management, model versioning, real-time inference, drift detection, and automated retraining.
 
