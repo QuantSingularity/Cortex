@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "cortex-feature-store"
+    static_configs:
+      - targets: ["feature-store:8001"]
+    metrics_path: /metrics
+
+  - job_name: "cortex-model-registry"
+    static_configs:
+      - targets: ["model-registry:8002"]
+    metrics_path: /metrics
+
+  - job_name: "cortex-serving"
+    static_configs:
+      - targets: ["serving:8003"]
+    metrics_path: /metrics
+
+  - job_name: "cortex-drift-detection"
+    static_configs:
+      - targets: ["drift-detection:8004"]
+    metrics_path: /metrics
+
+  - job_name: "cortex-scheduler"
+    static_configs:
+      - targets: ["scheduler:8005"]
+    metrics_path: /metrics
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

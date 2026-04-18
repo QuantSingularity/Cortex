@@ -1,0 +1,81 @@
+{
+  "uid": "cortex-mlops",
+  "title": "Cortex MLOps Overview",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Prediction Requests / sec",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "rate(cortex_predictions_total[1m])",
+          "legendFormat": "{{model_name}} v{{version}}"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Inference Latency P99 (ms)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, rate(cortex_inference_duration_seconds_bucket[5m])) * 1000",
+          "legendFormat": "p99 {{model_name}}"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Drift Score by Feature",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "cortex_drift_score",
+          "legendFormat": "{{feature_name}} ({{test_type}})"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Feature Store Writes / sec",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(cortex_feature_writes_total[1m])",
+          "legendFormat": "{{feature_group}}"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Retraining Jobs",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "expr": "cortex_retraining_jobs_total",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Models in Production",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 16 },
+      "targets": [
+        {
+          "expr": "cortex_models_in_production",
+          "legendFormat": ""
+        }
+      ]
+    }
+  ]
+}

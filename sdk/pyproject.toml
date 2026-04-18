@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "cortex-sdk"
+version = "0.1.0"
+description = "Cortex MLOps Backbone Python SDK"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+    "kafka-python>=2.0.2",
+]
