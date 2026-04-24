@@ -71,8 +71,8 @@
 ### 1. Clone and configure
 
 ```bash
-git clone https://github.com/quantsingularity/cortex.git
-cd cortex
+git clone https://github.com/quantsingularity/Cortex.git
+cd Cortex
 cp .env.example .env
 # Edit .env if needed (defaults work out of the box)
 ```
@@ -312,7 +312,7 @@ asyncio.run(main())
 ## Folder Structure
 
 ```
-cortex/
+Cortex/
 ├── docker-compose.yml          # Full stack orchestration
 ├── .env.example                # Environment variable template
 ├── infra/
