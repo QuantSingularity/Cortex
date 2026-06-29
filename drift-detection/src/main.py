@@ -14,11 +14,14 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from .database import init_db
 from .kafka_consumer import start_kafka_consumer
-from .routers import drift, reference
 
 logging.basicConfig(level="INFO")
 logger = logging.getLogger("cortex.drift-detection")
 
+# Metrics must be defined before importing the routers: drift.py does
+# `from ..main import DRIFT_ALERTS_TOTAL, DRIFT_SCORE_GAUGE`. Defining them after
+# the router import caused a circular-import error that stopped the service from
+# starting.
 DRIFT_SCORE_GAUGE = Gauge(
     "cortex_drift_score",
     "Latest drift score per feature",
@@ -29,6 +32,8 @@ DRIFT_ALERTS_TOTAL = Counter(
     "Total drift alerts triggered",
     ["model_name", "feature_name"],
 )
+
+from .routers import drift, reference  # noqa: E402  (must follow metrics)
 
 
 @asynccontextmanager

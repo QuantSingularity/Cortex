@@ -89,5 +89,20 @@ async def _consume():
         await consumer.stop()
 
 
+async def _run_guarded():
+    """Keep the consumer alive across broker outages instead of dying with an
+    unretrieved background-task exception when Kafka is unreachable."""
+    while True:
+        try:
+            await _consume()
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:
+            logger.warning(
+                f"Feature-store Kafka consumer unavailable, retrying in 10s: {e}"
+            )
+            await asyncio.sleep(10)
+
+
 async def start_kafka_consumer():
-    asyncio.create_task(_consume())
+    asyncio.create_task(_run_guarded())

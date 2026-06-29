@@ -13,12 +13,15 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from .database import init_db
 from .model_cache import warm_cache
-from .routers import deployments, inference
 
 logging.basicConfig(level="INFO")
 logger = logging.getLogger("cortex.serving")
 
 # ─── Prometheus Metrics ────────────────────────────────────────────────────────
+# These MUST be defined before importing the routers below: the routers do
+# `from ..main import INFERENCE_LATENCY, PREDICTIONS_TOTAL`, so if the router
+# import ran first, main would still be partially initialized and the import
+# would fail with a circular-import error (the service would not start at all).
 PREDICTIONS_TOTAL = Counter(
     "cortex_predictions_total",
     "Total prediction requests",
@@ -33,6 +36,8 @@ INFERENCE_LATENCY = Histogram(
 ACTIVE_MODELS = Gauge(
     "cortex_active_deployed_models", "Number of currently deployed models"
 )
+
+from .routers import deployments, inference  # noqa: E402  (must follow metrics)
 
 
 @asynccontextmanager
