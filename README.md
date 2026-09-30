@@ -246,7 +246,7 @@ print(f"Latest job: {jobs[0]['status']}")
 | `cortex_drift_alerts_total`         | Counter   | `model_name, feature_name`            | Total drift alerts       |
 | `cortex_feature_writes_total`       | Counter   | `feature_group`                       | Feature write throughput |
 | `cortex_retraining_jobs_total`      | Counter   | `status`                              | Retraining job outcomes  |
-| `cortex_models_in_production`       | Gauge     | —                                     | Active production models |
+| `cortex_models_in_production`       | Gauge     | -                                     | Active production models |
 
 Access Grafana at **http://localhost:3000** (admin / cortex_grafana) for pre-built dashboards.
 
@@ -269,7 +269,7 @@ pip install cortex-sdk
 ```python
 from cortex_sdk import CortexClient, CortexConfig
 
-# Simple — all services on localhost with default ports
+# Simple - all services on localhost with default ports
 client = CortexClient("http://localhost")
 
 # Full config

@@ -97,7 +97,7 @@ async def check_drift(body: DriftCheckRequest, db: AsyncSession = Depends(get_db
                     },
                 )
         except Exception:
-            pass  # Scheduler unavailable — report is still saved
+            pass  # Scheduler unavailable - report is still saved
 
     return reports
 

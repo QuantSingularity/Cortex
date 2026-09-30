@@ -1,7 +1,7 @@
 """
 APScheduler integration.
 - Loads scheduled triggers from DB on startup
-- Executes retraining jobs (mock executor — plug in your training code here)
+- Executes retraining jobs (mock executor - plug in your training code here)
 - Exposes add/remove schedule APIs
 """
 
@@ -142,7 +142,7 @@ def _add_cron_job(model_name: str, cron_expr: str):
     parts = cron_expr.split()
     if len(parts) != 5:
         logger.warning(
-            f"Invalid cron expression '{cron_expr}' for {model_name} — skipping"
+            f"Invalid cron expression '{cron_expr}' for {model_name} - skipping"
         )
         return
 

@@ -42,7 +42,7 @@ async def push_features(
     db.add_all(rows)
     await db.commit()
 
-    # Write to online (redis) — latest values
+    # Write to online (redis) - latest values
     redis_key = make_online_key(group_name, body.entity_id)
     await r.hset(
         redis_key, mapping={k: json.dumps(v) for k, v in body.features.items()}

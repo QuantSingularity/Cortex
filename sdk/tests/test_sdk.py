@@ -1,5 +1,5 @@
 """
-Unit tests for the Cortex SDK (no running services required — uses httpx mock transport).
+Unit tests for the Cortex SDK (no running services required - uses httpx mock transport).
 """
 
 import httpx
@@ -68,9 +68,9 @@ def test_kafka_publisher_with_config():
         base_url="http://localhost", kafka_bootstrap_servers="kafka:9092"
     )
     client = CortexClient(config=cfg)
-    # Don't actually connect — just verify the publisher is created
+    # Don't actually connect - just verify the publisher is created
     try:
         client.kafka_publisher()
     except Exception as e:
-        # kafka not running in test env — ImportError or connection error is fine
+        # kafka not running in test env - ImportError or connection error is fine
         assert "kafka" in str(e).lower() or "connect" in str(e).lower()

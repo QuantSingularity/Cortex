@@ -1,8 +1,8 @@
 """
 Statistical drift detection engine.
 Implements:
-  - Kolmogorov-Smirnov (KS) test  — p-value based, catches distribution shape changes
-  - Population Stability Index (PSI) — binning-based, widely used in credit/ML monitoring
+  - Kolmogorov-Smirnov (KS) test  - p-value based, catches distribution shape changes
+  - Population Stability Index (PSI) - binning-based, widely used in credit/ML monitoring
 """
 
 import logging
@@ -34,7 +34,7 @@ def ks_test(
     Returns:
         statistic  : KS statistic (max distance between CDFs)
         p_value    : p-value (low = drift likely)
-        drift      : bool — True if p_value < threshold
+        drift      : bool - True if p_value < threshold
     """
     if len(reference) < 10 or len(current) < 10:
         logger.warning("KS test needs at least 10 samples per distribution")
@@ -72,7 +72,7 @@ def compute_psi(
     Returns:
         psi_score  : float
         bin_edges  : list of bin edges used (reuse for future scoring)
-        drift      : bool — True if psi_score >= threshold
+        drift      : bool - True if psi_score >= threshold
     """
     ref_arr = np.array(reference, dtype=float)
     cur_arr = np.array(current, dtype=float)

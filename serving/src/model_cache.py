@@ -27,7 +27,7 @@ async def warm_cache():
             resp = await client.get(f"{MODEL_REGISTRY_URL}/models/")
             if resp.status_code != 200:
                 logger.warning(
-                    "Could not reach model registry — starting with empty cache"
+                    "Could not reach model registry - starting with empty cache"
                 )
                 return
 
@@ -58,7 +58,7 @@ async def load_model(model_name: str, version_info: dict):
     model_obj = None
 
     if framework == "mock" or not artifact_uri or artifact_uri.startswith("mock://"):
-        # Mock predictor — returns zeros; used in dev/testing
+        # Mock predictor - returns zeros; used in dev/testing
         model_obj = MockModel(model_name)
         logger.info(f"Loaded MOCK model: {model_name} v{version}")
 
@@ -71,7 +71,7 @@ async def load_model(model_name: str, version_info: dict):
 
     else:
         model_obj = MockModel(model_name)
-        logger.warning(f"Unknown framework '{framework}' for {model_name} — using mock")
+        logger.warning(f"Unknown framework '{framework}' for {model_name} - using mock")
 
     _model_cache[model_name] = {
         "version": version,
@@ -93,7 +93,7 @@ def list_loaded_models() -> list:
 
 
 class MockModel:
-    """Passthrough mock model for dev/testing — returns dummy predictions."""
+    """Passthrough mock model for dev/testing - returns dummy predictions."""
 
     def __init__(self, name: str):
         self.name = name

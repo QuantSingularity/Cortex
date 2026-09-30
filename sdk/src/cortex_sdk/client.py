@@ -1,5 +1,5 @@
 """
-CortexClient — single entry point for the entire Cortex MLOps Backbone SDK.
+CortexClient - single entry point for the entire Cortex MLOps Backbone SDK.
 """
 
 from __future__ import annotations

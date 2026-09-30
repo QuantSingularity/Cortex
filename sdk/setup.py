@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name="cortex-sdk",
     version="0.1.0",
-    description="Cortex MLOps Backbone — Python SDK for pushing features and calling predictions",
+    description="Cortex MLOps Backbone - Python SDK for pushing features and calling predictions",
     author="Abrar Ahmed",
     packages=find_packages(where="src"),
     package_dir={"": "src"},

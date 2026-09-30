@@ -33,7 +33,7 @@ async def _consume():
         auto_offset_reset="latest",
     )
     await consumer.start()
-    logger.info(f"Drift Kafka consumer started — topic: {KAFKA_TOPIC}")
+    logger.info(f"Drift Kafka consumer started - topic: {KAFKA_TOPIC}")
 
     try:
         async for msg in consumer:
